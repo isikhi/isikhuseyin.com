@@ -6,30 +6,7 @@ on:
       - main
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: |
-          cd website
-          npm install
-
-      - name: Build project
-        run: |
-          cd website
-          npm run build
-
   deploy:
-    needs: test
     runs-on: ubuntu-latest
     permissions:
       pages: write
@@ -45,6 +22,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
+          cache: 'npm'
+          cache-dependency-path: 'website/package-lock.json'
 
       - name: Install dependencies
         run: |
