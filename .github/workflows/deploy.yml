@@ -36,10 +36,10 @@ jobs:
           npm run build
 
       - name: Deploy to GitHub Pages
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v4
         with:
           path: website/build
 
       - name: Deploy site
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
